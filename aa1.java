@@ -84,4 +84,29 @@ class aa1{
 	}
 	
 	
+	public static int[][] bodMat(){
+		int i, j;
+		int count = 0;
+		boolean bh;
+		boolean bv[] = new boolean[v];
+		int[][] M = getMat();
+		
+		for(i=0; i<v; i++){
+			bv[i] = false;
+		}
+		for(i=0; i<v; i++){
+			for(j=0, bh=false; j<v; j++){
+				if(M[i][j] == 1){
+					bh = true;
+					bv[j] =true;
+				}else if (!bh && !bv[j]){
+					M[i][j] = -1;
+					count++;
+				}
+			}
+		}
+		return M;
+	}
+		
+
 }

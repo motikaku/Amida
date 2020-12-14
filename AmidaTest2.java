@@ -4,31 +4,35 @@ import java.security.SecureRandom;
 public class AmidaTest2{
 	public static void main(String args[]){
 		int tate = 5;
-		int length = 5*(5-1)/2;
+		int maxSwaps = 5*(5-1)/2;
+		int maxYoko = maxSwaps;
 		SecureRandom ran = new SecureRandom(); 
-		int yoko = 1 + ran.nextInt(length);
-		int d[] = new int[length+1];
-		for(int i=0; i<length+1; i++){
+		int d[] = new int[maxSwaps+1];
+		for(int i=0; i<maxSwaps+1; i++){
 			d[i]=0;
 		}
 		
 		
 		for(int i=0; i<6; i++){
-			aa1 A = new aa1(tate, yoko);
-			int[][] Amida = A.getMat();
+			int yoko = ran.nextInt(maxYoko);
+			aa1 Amida = new aa1(tate, yoko);
+			int[][] M = Amida.bodMat();
 			for(int j=0; j<tate; j++){
 				for(int k=0; k<tate; k++){
-					System.out.print(Amida[j][k]);
+					if (M[j][k] == -1)
+						System.out.print('*');
+					else
+						System.out.print(M[j][k]);
 				}
 				System.out.println();
 			}
 			System.out.println();
-			int x = A.bod();
-			for(int j=0; j<length+1; j++){
+			int x = Amida.bod();
+			for(int j=0; j<maxSwaps+1; j++){
 				if(j == x) d[j]++;
 			}
 		}
-		for(int i=0; i<5*(5-1)/2+1; i++){
+		for(int i=0; i<maxSwaps+1; i++){
 			System.out.println("d["+i+"] = " + d[i]);
 		}
 		
